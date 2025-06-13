@@ -2,18 +2,18 @@ programa
 {
 	inclua biblioteca Matematica
 	inclua biblioteca Util
-	cadeia ordem
+	cadeia ordem
 	inteiro bala 
 	inteiro balaverdade
 	funcao inicio()
 	{
-		escreva("quer jogar rolera russa? ")
+		escreva("quer jogar roleta russa? ")
 		leia(ordem)
 		se (ordem == "sim"){
 			balaverdade = Util.sorteia(1,7)
-			bala = Util.sorteia(balaMinima, 8)
+			bala = Util.sorteia(balaverdade, 8)
 			Util.aguarde(1000)
-			se(bala < balaMinima){
+			se(bala < balaverdade){
 				escreva ("voce perdeu pegou uma bala de verdade")
 				}
 			senao{
