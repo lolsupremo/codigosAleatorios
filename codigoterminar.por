@@ -68,6 +68,27 @@ programa
 		}senao	
 		se(numero/100 > 1 e numero%100/10 > 1 e numero%10 == 0){
 			escreva("seu numero tem ",numero/100," centenas e ",numero%100/10," dezenas.")
+		}senao
+		 se(numero/100 > 1 e numero%100/10 == 0 e numero%10 > 1){
+			escreva("seu numero tem ",numero/100," centenas e ",numero%10," unidades.")
+		}senao
+		se(numero/100 == 0 e numero%100/10 == 1 e numero%10 > 1){
+			escreva("seu numero tem 1 dezena e ",numero%10," unidade.")
+		}senao	
+		se(numero/100 == 1 e numero%100/10 == 0 e numero%10 == 0){
+			escreva("seu numero tem 1 centena.")
+		}senao	
+		se(numero/100 == 1 e numero%100/10 > 1 e numero%10 == 0){
+			escreva("seu numero tem 1 centena e ",numero%100/10," dezenas.")
+		}senao	
+		se(numero/100 == 1 e numero%100/10 > 1 e numero%10 == 1){
+			escreva("seu numero tem 1 centenas ",numero%100/10," dezenas e 1 unidade.")
+		}senao	
+		se(numero/100 == 1 e numero%100/10 > 1 e numero%10 > 1){
+			escreva("seu numero tem 1 centena, ",numero%100/10," dezenas e ",numero%10," unidades.")
+		}senao	
+		se(numero/100 > 1 e numero%100/10 == 1 e numero%10 > 1){
+			escreva("seu numero tem ",numero/100," centenas, 1 dezena e ",numero%10," unidades.")
 		}
 		
 		
@@ -78,7 +99,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2562; 
+ * @POSICAO-CURSOR = 3857; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
