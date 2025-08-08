@@ -1,0 +1,1 @@
+programa{funcao inicio(){inteiro numeros[12] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23}, ini = 0, fim = 11, meio = (ini + fim) / 2, procurado = 15 enquanto(ini <= fim){meio = (ini + fim)/2 se(procurado == numeros[meio]){escreva("Opa numero encontrado")pare} senao{se(procurado > numeros[meio]){ini = meio + 1}senao{fim = meio - 1} }}}}
