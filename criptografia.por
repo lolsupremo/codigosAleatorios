@@ -7,38 +7,16 @@ programa
 	
 	funcao inicio()
 	{
-		criptografar("paz", 3)
+		
 
-		para(inteiro i=0; i < 26; i++){
-			descriptografar("sdc ", 3)
+		para(inteiro i=0; i < 27; i++){
+			descriptografar("afokxop ezdyp zp lypoyzoxp nszfcp lzf wtyyocvxf gzevk xyf oj nwtmdwlezp nszfcp vtywyzoqzozp", i)
 			escreva("\nchave: ", i, "\n")
 		}
 		
 	}
 
-	funcao vazio criptografar(cadeia msg, inteiro chave){
-
-		inteiro numCaracteres = t.numero_caracteres(msg)
-
-		escreva("\nchave: ", chave, "\n")
-
-		para(inteiro i=0; i < numCaracteres; i++){
-			
-			caracter letra = t.obter_caracter(msg, i)
-
-			//percorrer todo o alfabeto e verificar a posicao da letra
-			para(inteiro j=0; j < 26; j++){
-
-				se(letra == alfabeto[j]){
-					inteiro novaPosicao = (j + chave) % 26
-					escreva(alfabeto[novaPosicao])
-					pare
-				}
-
-			}
-			
-		}
-	}
+	
 
 	funcao vazio descriptografar(cadeia msg, inteiro chave){
 
@@ -49,7 +27,10 @@ programa
 		para(inteiro i=0; i < numCaracteres; i++){
 			
 			caracter letra = t.obter_caracter(msg, i)
-
+			
+			se(letra == ' '){
+				escreva( " ")
+			}senao{
 			//percorrer todo o alfabeto e verificar a posicao da letra
 			para(inteiro j=0; j < 26; j++){
 
@@ -69,5 +50,5 @@ programa
 			
 		}
 	}
-	
+	}
 }
