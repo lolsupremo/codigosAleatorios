@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peugeot | Racing Experience</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER: TACÔMETRO REDONDO --- */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: all 0.8s cubic-bezier(0.9, 0, 0.1, 1);
+        }
+
+        .gauge-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SVG do Arco */
+        svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-220deg); /* Começa o arco na posição 7 horas */
+        }
+
+        circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .bg-circle { stroke: rgba(255,255,255,0.05); }
+
+        .progress-circle {
+            stroke: #4ae1ff;
+            stroke-dasharray: 630; /* Circunferência aproximada */
+            stroke-dashoffset: 630;
+            transition: stroke-dashoffset 2.5s cubic-bezier(0.5, 0, 0.2, 1), stroke 0.5s;
+            filter: drop-shadow(0 0 8px #4ae1ff);
+        }
+
+        .loader-logo {
+            position: absolute;
+            width: 60px;
+            animation: vibe 0.05s infinite alternate;
+            opacity: 0.7;
+        }
+
+        @keyframes vibe {
+            from { transform: translate(-1px, -1px); }
+            to { transform: translate(1px, 1px); }
+        }
+
+        .rpm-number {
+            position: absolute;
+            bottom: 60px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        /* --- CONTEÚDO DO SITE --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(15px);
+            transform: translateY(-100%);
+            transition: 0.8s ease;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070&auto=format&fit=crop') center/cover;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(60px, 15vw, 180px);
+            line-height: 0.8;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: #000;
+            border-top: 1px solid #222;
+        }
+
+        .stat-box {
+            padding: 80px 40px;
+            border-right: 1px solid #111;
+            transition: 0.5s;
+        }
+
+        .stat-box:hover { background: #0a0a0a; border-bottom: 4px solid #4ae1ff; }
+
+        .stat-box h3 { font-size: 14px; color: #4ae1ff; letter-spacing: 5px; margin-bottom: 20px; }
+        .stat-box p { font-size: 40px; font-weight: 900; }
+
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="gauge-wrapper">
+            <svg>
+                <circle class="bg-circle" cx="150" cy="150" r="100"></circle>
+                <circle class="progress-circle" id="rpmArc" cx="150" cy="150" r="100"></circle>
+            </svg>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Peugeot_Logo.svg" class="loader-logo" alt="">
+            <div class="rpm-number" id="rpmText">0</div>
+        </div>
+        <p style="margin-top: 20px; font-size: 10px; letter-spacing: 5px; color: #444;">IGNITION SYSTEM ON</p>
+    </div>
+
+    <nav id="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Peugeot_Logo.svg" height="40" alt="">
+        <div style="display:flex; gap:40px; font-weight:bold; font-size:11px; letter-spacing:3px;">
+            <a href="#" style="color:#fff; text-decoration:none;">LINEUP</a>
+            <a href="#" style="color:#fff; text-decoration:none;">9X8 HYPERCAR</a>
+            <a href="#" style="color:#fff; text-decoration:none;">RACING DNA</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <p data-aos="fade-down" style="letter-spacing:15px; color:#4ae1ff; margin-bottom:20px;">EST. 1810</p>
+            <h1 data-aos="zoom-out" data-aos-duration="2000">PEUGEOT<br>SPORT</h1>
+        </div>
+    </main>
+
+    <section class="stats-section">
+        <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+            <h3>HORSEPOWER</h3>
+            <p>707 HP</p>
+        </div>
+        <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
+            <h3>MAX SPEED</h3>
+            <p>345 KM/H</p>
+        </div>
+        <div class="stat-box" data-aos="fade-up" data-aos-delay="500">
+            <h3>ENGINE</h3>
+            <p>V6 HYBRID</p>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const arc = document.getElementById('rpmArc');
+            const rpmText = document.getElementById('rpmText');
+            const loader = document.getElementById('loader');
+            const nav = document.getElementById('navbar');
+
+            // 1. Animação do Tacômetro (Círculo)
+            // stroke-dashoffset: 630 é vazio, ~150 é cheio
+            setTimeout(() => {
+                arc.style.strokeDashoffset = "150";
+                
+                // Contador de RPM subindo
+                let rpm = 0;
+                let interval = setInterval(() => {
+                    rpm += 185;
+                    if (rpm >= 9000) {
+                        rpm = 9000;
+                        arc.style.stroke = "#ff004c"; // Redline!
+                        arc.style.filter = "drop-shadow(0 0 20px #ff004c)";
+                        clearInterval(interval);
+                    }
+                    rpmText.innerText = rpm;
+                }, 40);
+            }, 300);
+
+            // 2. Transição para o Site
+            setTimeout(() => {
+                loader.style.opacity = "0";
+                loader.style.transform = "scale(1.5)"; // Efeito de explosão
+                
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    nav.style.transform = "translateY(0)";
+                    
+                    AOS.init({
+                        duration: 1200,
+                        once: false
+                    });
+                }, 800);
+            }, 3500);
+        });
+    </script>
+</body>
+</html>
